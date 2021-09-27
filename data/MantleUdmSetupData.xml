@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This software is in the public domain under CC0 1.0 Universal plus a 
+Grant of Patent License.
+
+To the extent possible under law, the author(s) have dedicated all
+copyright and related and neighboring rights to this software to the
+public domain worldwide. This software is distributed without any
+warranty.
+
+You should have received a copy of the CC0 Public Domain Dedication
+along with this software (see the LICENSE.md file). If not, see
+<http://creativecommons.org/publicdomain/zero/1.0/>.
+-->
+<entity-facade-xml type="seed-initial">
+    <!-- Special Permissions - NOTE: other such permissions that the data model seed data does not rely on are in MantleSetupData.xml in mantle-usl -->
+    <userPermissions userPermissionId="INVOICE_APPROVE" description="Invoice Approve"/>
+    <userGroupPermissions userGroupId="ADMIN" userPermissionId="INVOICE_APPROVE" fromDate="0"/>
+
+    <!-- User/Group Preferences -->
+    <moqui.basic.Enumeration enumId="ValidateAddressGatewayConfigId" description="Address Validate Gateway Config ID" enumTypeId="UserPreferenceKey"/>
+    <moqui.basic.Enumeration enumId="DefaultShipmentGatewayConfigId" description="Shipment Default Gateway Config ID" enumTypeId="UserPreferenceKey"/>
+
+    <moqui.basic.Enumeration enumId="mantle.content.root" description="Mantle Content Root Loc" enumTypeId="UserPreferenceKey"/>
+    <moqui.basic.Enumeration enumId="mantle.content.large.root" description="Mantle Content Large Root Loc - binary, etc files" enumTypeId="UserPreferenceKey"/>
+</entity-facade-xml>
