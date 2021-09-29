@@ -28,8 +28,6 @@ along with this software (see the LICENSE.md file). If not, see
             <parameter name="product" type="Map"/>
             <parameter name="productList" type="List"><parameter name="product" type="Map"/></parameter>
             <parameter name="shipment" type="Map"/>
-<!--            <parameter name="workEffort" type="Map"/>-->
-<!--            <parameter name="acctgTrans" type="Map"/>-->
 
             <parameter name="assetId"/>
             <parameter name="containerId"/>
@@ -38,12 +36,9 @@ along with this software (see the LICENSE.md file). If not, see
             <parameter name="orderId"/>
             <parameter name="returnId"/>
             <parameter name="partyId"/>
-            <parameter name="partyBadgeId"/>
             <parameter name="paymentId"/>
             <parameter name="productId"/>
             <parameter name="shipmentId"/>
-<!--            <parameter name="workEffortId"/>-->
-<!--            <parameter name="acctgTransId"/>-->
         </out-parameters>
         <actions>
             <if condition="!lookupId"><return/></if>
@@ -199,16 +194,6 @@ along with this software (see the LICENSE.md file). If not, see
                     <field-map field-name="originId" from="lookupId"/></entity-find-one>
             </if>
             <if condition="shipment != null"><set field="shipmentId" from="shipment.shipmentId"/></if>
-
-            <!--&lt;!&ndash; WorkEffort &ndash;&gt;
-            <entity-find-one entity-name="mantle.work.effort.WorkEffort" value-field="workEffort">
-                <field-map field-name="workEffortId" from="lookupId"/></entity-find-one>
-            <if condition="workEffort != null"><set field="workEffortId" from="workEffort.workEffortId"/></if>-->
-
-            <!--&lt;!&ndash; AcctgTrans &ndash;&gt;
-            <entity-find-one entity-name="mantle.ledger.transaction.AcctgTrans" value-field="acctgTrans">
-                <field-map field-name="acctgTransId" from="lookupId"/></entity-find-one>
-            <if condition="acctgTrans != null"><set field="acctgTransId" from="acctgTrans.acctgTransId"/></if>-->
         </actions>
     </service>
 
