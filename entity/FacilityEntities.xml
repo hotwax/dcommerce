@@ -202,7 +202,6 @@ along with this software (see the LICENSE.md file). If not, see
         <field name="facilityId" type="id" is-pk="true"/>
         <field name="glAccountId" type="id" is-pk="true"/>
         <relationship type="one" related="mantle.facility.Facility" short-alias="facility"/>
-<!--        <relationship type="one" related="mantle.ledger.account.GlAccount" short-alias="glAccount"/>-->
     </entity>
 
     <entity entity-name="FacilityGroup" package="mantle.facility" short-alias="facilityGroups">

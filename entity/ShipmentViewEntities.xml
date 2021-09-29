@@ -403,9 +403,4 @@ along with this software (see the LICENSE.md file). If not, see
         <alias name="carrierPseudoId" entity-alias="CPTY" field="pseudoId"/>
         <alias name="shipmentMethodDescription" entity-alias="SME" field="description"/>
     </view-entity>
-
-    <!-- ========================================================= -->
-    <!-- mantle.shipment.picklist -->
-    <!-- ========================================================= -->
-
 </entities>

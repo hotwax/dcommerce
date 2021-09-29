@@ -391,8 +391,6 @@ along with this software (see the LICENSE.md file). If not, see
         <field name="yearsRemaining" type="number-integer"/>
         <field name="acctgTransId" type="id"/>
         <relationship type="one" related="mantle.product.asset.Asset"/>
-        <!--<relationship type="one" related="mantle.party.time.TimePeriod"/>
-        <relationship type="one" related="mantle.ledger.transaction.AcctgTrans"/>-->
     </entity>
     <entity entity-name="AssetIdentification" package="mantle.product.asset" cache="never">
         <field name="assetId" type="id" is-pk="true"/>
@@ -427,30 +425,6 @@ along with this software (see the LICENSE.md file). If not, see
         <relationship type="one" related="mantle.product.asset.Asset"/>
         <relationship type="one" related="moqui.basic.StatusItem"/>
     </entity>
-    <!-- unused and probably not useful 20170417:
-    <entity entity-name="AssetProduct" package="mantle.product.asset" cache="never">
-        <field name="assetId" type="id" is-pk="true"/>
-        <field name="productId" type="id" is-pk="true"/>
-        <field name="assetProductTypeEnumId" type="id" is-pk="true"/>
-        <field name="fromDate" type="date-time" is-pk="true"/>
-        <field name="thruDate" type="date-time"/>
-        <field name="comments" type="text-medium"/>
-        <field name="sequenceNum" type="number-integer"/>
-        <field name="quantity" type="number-decimal"/>
-        <field name="quantityUomId" type="id"/>
-        <relationship type="one" related="mantle.product.Product"/>
-        <relationship type="one" related="mantle.product.asset.Asset"/>
-        <relationship type="one" title="AssetProductType" related="moqui.basic.Enumeration">
-            <key-map field-name="assetProductTypeEnumId"/></relationship>
-        <relationship type="one" title="Quantity" related="moqui.basic.Uom"><key-map field-name="quantityUomId"/></relationship>
-        <seed-data>
-            <moqui.basic.EnumerationType description="Asset Product Type" enumTypeId="AssetProductType"/>
-            <moqui.basic.Enumeration description="Use of Asset" enumId="AspTpUse" enumTypeId="AssetProductType"/>
-            <moqui.basic.Enumeration description="Sale of Asset" enumId="AspTpSale" enumTypeId="AssetProductType"/>
-        </seed-data>
-    </entity>
-    -->
-
     <entity entity-name="AssetPaymentMethod" package="mantle.product.asset">
         <field name="assetId" type="id" is-pk="true"/>
         <field name="paymentMethodId" type="id" is-pk="true"/>

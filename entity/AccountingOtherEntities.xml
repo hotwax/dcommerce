@@ -81,41 +81,6 @@ along with this software (see the LICENSE.md file). If not, see
         <relationship type="one" related="mantle.party.Party"/>
         <relationship type="one" related="mantle.other.tax.TaxAuthority"/>
     </entity>
-    <!-- Using a Drools Decision Table instead of this (much more flexible):
-    <entity entity-name="TaxAuthorityRate" package="mantle.other.tax">
-        <field name="taxAuthorityRateId" type="id" is-pk="true"/>
-        <field name="taxAuthorityId" type="id"/>
-        <field name="rateTypeEnumId" type="id"/>
-        <field name="productStoreId" type="id"/>
-        <field name="productCategoryId" type="id"/>
-        <field name="titleTransferEnumId" type="id"/>
-        <field name="minItemPrice" type="currency-amount"/>
-        <field name="minPurchase" type="currency-amount"/>
-        <field name="taxShipping" type="text-indicator"/>
-        <field name="taxPercentage" type="number-decimal"/>
-        <field name="taxPromotions" type="text-indicator"/>
-        <field name="fromDate" type="date-time"/>
-        <field name="thruDate" type="date-time"/>
-        <field name="description" type="text-medium"/>
-        <relationship type="one" related="mantle.other.tax.TaxAuthority">
-            <key-map field-name="taxAuthGeoId"/><key-map field-name="taxAuthPartyId"/></relationship>
-        <relationship type="one" title="TaxAuthorityRateType" related="moqui.basic.Enumeration">
-            <key-map field-name="rateTypeEnumId"/></relationship>
-        <relationship type="one" related="ProductStore"/>
-        <relationship type="one" related="ProductCategory"/>
-        <seed-data>
-            <!- - Tax Authority Rate Type - ->
-            <moqui.basic.EnumerationType description="Tax Authority Rate Type" enumTypeId="TaxAuthorityRateType"/>
-            <moqui.basic.Enumeration enumId="SALES_TAX" description="Sales Tax" enumTypeId="TaxAuthorityRateType"/>
-            <moqui.basic.Enumeration enumId="USE_TAX" description="Use Tax" enumTypeId="TaxAuthorityRateType"/>
-            <moqui.basic.Enumeration enumId="VAT_TAX" description="Value Added Tax" enumTypeId="TaxAuthorityRateType"/>
-            <moqui.basic.Enumeration enumId="INCOME_TAX" description="Income Tax" enumTypeId="TaxAuthorityRateType"/>
-            <moqui.basic.Enumeration enumId="EXPORT_TAX" description="Export Tax" enumTypeId="TaxAuthorityRateType"/>
-            <moqui.basic.Enumeration enumId="IMPORT_TAX" description="Import Tax" enumTypeId="TaxAuthorityRateType"/>
-        </seed-data>
-    </entity>
-    -->
-
     <entity entity-name="TaxGatewayConfig" package="mantle.other.tax">
         <field name="taxGatewayConfigId" type="id" is-pk="true"/>
         <field name="taxGatewayTypeEnumId" type="id"><description>Each payment gateway integration should define a
@@ -143,8 +108,6 @@ along with this software (see the LICENSE.md file). If not, see
         <field name="taxAuthorityId" type="id"/>
         <field name="formId" type="id"/>
         <field name="formResponseId" type="id"/>
-        <!--<relationship type="one" related="mantle.party.time.TimePeriod"/>
-        <relationship type="one" related="mantle.humanres.employment.Employment"/>-->
         <relationship type="one" related="mantle.other.tax.TaxAuthority"/>
         <relationship type="one" related="moqui.screen.form.DbForm"/>
         <relationship type="one" related="moqui.screen.form.FormResponse"/>
