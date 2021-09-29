@@ -391,8 +391,8 @@ along with this software (see the LICENSE.md file). If not, see
         <field name="yearsRemaining" type="number-integer"/>
         <field name="acctgTransId" type="id"/>
         <relationship type="one" related="mantle.product.asset.Asset"/>
-        <relationship type="one" related="mantle.party.time.TimePeriod"/>
-        <relationship type="one" related="mantle.ledger.transaction.AcctgTrans"/>
+        <!--<relationship type="one" related="mantle.party.time.TimePeriod"/>
+        <relationship type="one" related="mantle.ledger.transaction.AcctgTrans"/>-->
     </entity>
     <entity entity-name="AssetIdentification" package="mantle.product.asset" cache="never">
         <field name="assetId" type="id" is-pk="true"/>

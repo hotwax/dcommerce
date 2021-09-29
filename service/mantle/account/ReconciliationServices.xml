@@ -106,7 +106,7 @@ along with this software (see the LICENSE.md file). If not, see
                     <set field="debitCreditFlag" from="bankAccountTrans.transAmount &gt;= 0 ? 'D' : 'C'"/>
 
                     <!-- if we have a paymentId, look up AcctgTrans by paymentId -->
-                    <if condition="payment">
+                    <!--<if condition="payment">
                         <entity-find entity-name="mantle.ledger.transaction.AcctgTransAndEntry" list="ataeList">
                             <econdition field-name="glAccountId" from="paymentMethod.glAccountId"/>
                             <econdition field-name="reconcileStatusId" value="AterNot" or-null="true"/>
@@ -114,10 +114,10 @@ along with this software (see the LICENSE.md file). If not, see
                             <econdition field-name="paymentId" from="payment.paymentId"/>
                         </entity-find>
                         <set field="acctgTransAndEntry" from="ataeList ? ataeList[0] : null"/>
-                    </if>
+                    </if>-->
                     <!-- otherwise match against transAmount, postedDate (within X number of days after AcctgTrans.transactionDate?) -->
                     <!-- look for abs of transAmount -->
-                    <if condition="!acctgTransAndEntry">
+                    <!--<if condition="!acctgTransAndEntry">
                         <entity-find entity-name="mantle.ledger.transaction.AcctgTransAndEntry" list="ataeList">
                             <econdition field-name="glAccountId" from="paymentMethod.glAccountId"/>
                             <econdition field-name="reconcileStatusId" value="AterNot" or-null="true"/>
@@ -130,7 +130,7 @@ along with this software (see the LICENSE.md file). If not, see
                         </entity-find>
                         <set field="acctgTransAndEntry" from="ataeList ? ataeList[0] : null"/>
                     </if>
-                    <!-- nothing found? match against originalCurrencyAmount, originalCurrencyUomId -->
+                    &lt;!&ndash; nothing found? match against originalCurrencyAmount, originalCurrencyUomId &ndash;&gt;
                     <if condition="!acctgTransAndEntry &amp;&amp; paymentMethod.currencyUomId">
                         <entity-find entity-name="mantle.ledger.transaction.AcctgTransAndEntry" list="ataeList">
                             <econdition field-name="glAccountId" from="paymentMethod.glAccountId"/>
@@ -143,7 +143,7 @@ along with this software (see the LICENSE.md file). If not, see
                             <econdition field-name="transactionDate" operator="greater-equals" from="lookBackTs"/>
                         </entity-find>
                         <set field="acctgTransAndEntry" from="ataeList ? ataeList[0] : null"/>
-                    </if>
+                    </if>-->
                 </if>
                 <if condition="payment || acctgTransAndEntry">
                     <service-call name="mantle.account.ReconciliationServices.reconcile#PaymentMethodTrans"
@@ -223,7 +223,7 @@ along with this software (see the LICENSE.md file). If not, see
         </actions>
     </service>
 
-    <service verb="reconcile" noun="PaymentMethodTrans">
+    <!--<service verb="reconcile" noun="PaymentMethodTrans">
         <description>Record reconciliation for a PaymentMethodTrans record against Payment and/or AcctgTransEntry. Called
             by match#PaymentMethodTransUnmatched or can be called directly for manual match.</description>
         <in-parameters>
@@ -243,17 +243,17 @@ along with this software (see the LICENSE.md file). If not, see
             <if condition="bankAccountTrans == null">
                 <entity-find-one entity-name="mantle.account.method.PaymentMethodTrans" value-field="bankAccountTrans"/></if>
 
-            <!-- if we have a acctgTransId but no paymentId try getting paymentId from AcctgTrans record -->
-            <if condition="acctgTransId &amp;&amp; !paymentId">
+            &lt;!&ndash; if we have a acctgTransId but no paymentId try getting paymentId from AcctgTrans record &ndash;&gt;
+            &lt;!&ndash;<if condition="acctgTransId &amp;&amp; !paymentId">
                 <entity-find-one entity-name="mantle.ledger.transaction.AcctgTrans" value-field="acctgTrans"/>
                 <if condition="acctgTrans?.paymentId"><set field="paymentId" from="acctgTrans?.paymentId"/></if>
-            </if>
+            </if>&ndash;&gt;
 
             <if condition="paymentId">
                 <if condition="payment == null">
                     <entity-find-one entity-name="mantle.account.payment.Payment" value-field="payment"/></if>
 
-                <!-- if another PaymentMethodTrans has this paymentId clear it -->
+                &lt;!&ndash; if another PaymentMethodTrans has this paymentId clear it &ndash;&gt;
                 <entity-find entity-name="mantle.account.method.PaymentMethodTrans" list="existingTransList">
                     <econdition field-name="paymentId"/>
                     <econditions combine="or">
@@ -266,19 +266,19 @@ along with this software (see the LICENSE.md file). If not, see
                     <entity-update value-field="existingTrans"/>
                 </iterate>
 
-                <!-- set the paymentId -->
+                &lt;!&ndash; set the paymentId &ndash;&gt;
                 <set field="bankAccountTrans.paymentId" from="paymentId"/>
                 <set field="bankAccountTrans.noReconcile" value="N"/>
                 <entity-update value-field="bankAccountTrans"/>
 
-                <!-- set Payment.reconcileStatusId -->
-                <!-- TODO: could populate originalCurrencyAmount, originalCurrencyUomId if they are different -->
+                &lt;!&ndash; set Payment.reconcileStatusId &ndash;&gt;
+                &lt;!&ndash; TODO: could populate originalCurrencyAmount, originalCurrencyUomId if they are different &ndash;&gt;
                 <if condition="payment.reconcileStatusId != pmtReconcileStatusId">
                     <set field="payment.reconcileStatusId" from="pmtReconcileStatusId"/>
                     <entity-update value-field="payment"/>
                 </if>
 
-                <if condition="!acctgTransId">
+                &lt;!&ndash;<if condition="!acctgTransId">
                     <entity-find entity-name="mantle.ledger.transaction.AcctgTrans" list="existingTransList">
                         <econdition field-name="paymentId"/>
                         <econdition field-name="acctgTransTypeEnumId" operator="in"
@@ -287,11 +287,11 @@ along with this software (see the LICENSE.md file). If not, see
                         <econdition field-name="reverseOfAcctgTransId" from="null"/>
                     </entity-find>
                     <if condition="existingTransList"><set field="acctgTransId" from="existingTransList[0].acctgTransId"/></if>
-                </if>
+                </if>&ndash;&gt;
             </if>
 
             <if condition="acctgTransId">
-                <!-- if no acctgTransEntrySeqId get first by glAccountId -->
+                &lt;!&ndash; if no acctgTransEntrySeqId get first by glAccountId &ndash;&gt;
                 <if condition="!acctgTransEntrySeqId &amp;&amp; paymentMethod.glAccountId">
                     <entity-find entity-name="mantle.ledger.transaction.AcctgTransEntry" list="ateList">
                         <econdition field-name="acctgTransId"/>
@@ -307,7 +307,7 @@ along with this software (see the LICENSE.md file). If not, see
                 <if condition="acctgTransEntry == null &amp;&amp; acctgTransEntrySeqId">
                     <entity-find-one entity-name="mantle.ledger.transaction.AcctgTransEntry" value-field="acctgTransEntry"/></if>
 
-                <!-- if another PaymentMethodTrans has this acctgTransId/acctgTransEntrySeqId clear them -->
+                &lt;!&ndash; if another PaymentMethodTrans has this acctgTransId/acctgTransEntrySeqId clear them &ndash;&gt;
                 <entity-find entity-name="mantle.account.method.PaymentMethodTrans" list="existingTransList">
                     <econdition field-name="acctgTransId"/>
                     <econdition field-name="acctgTransEntrySeqId" ignore-if-empty="true"/>
@@ -322,15 +322,15 @@ along with this software (see the LICENSE.md file). If not, see
                     <entity-update value-field="existingTrans"/>
                 </iterate>
 
-                <!-- set the acctgTransId and acctgTransEntrySeqId -->
+                &lt;!&ndash; set the acctgTransId and acctgTransEntrySeqId &ndash;&gt;
                 <set field="bankAccountTrans.acctgTransId" from="acctgTransId"/>
                 <set field="bankAccountTrans.acctgTransEntrySeqId" from="acctgTransEntrySeqId"/>
                 <set field="bankAccountTrans.noReconcile" value="N"/>
                 <entity-update value-field="bankAccountTrans"/>
 
-                <!-- set AcctgTransEntry.reconcileStatusId -->
+                &lt;!&ndash; set AcctgTransEntry.reconcileStatusId &ndash;&gt;
                 <if condition="acctgTransEntry != null">
-                    <!-- TODO: could populate originalCurrencyAmount, originalCurrencyUomId if they are different -->
+                    &lt;!&ndash; TODO: could populate originalCurrencyAmount, originalCurrencyUomId if they are different &ndash;&gt;
                     <if condition="acctgTransEntry.reconcileStatusId != ateReconcileStatusId">
                         <set field="acctgTransEntry.reconcileStatusId" from="ateReconcileStatusId"/>
                         <entity-update value-field="acctgTransEntry"/>
@@ -389,5 +389,5 @@ along with this software (see the LICENSE.md file). If not, see
                         in-map="[paymentMethodId:existingTrans.paymentMethodId, fitId:existingTrans.fitId]"/>
             </iterate>
         </actions>
-    </service>
+    </service>-->
 </services>

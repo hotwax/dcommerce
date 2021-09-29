@@ -448,8 +448,8 @@ along with this software (see the LICENSE.md file). If not, see
             <mantle.party.RoleGroupMember roleGroupEnumId="RgpShipment" roleTypeId="AssetOwner"/>
             <mantle.party.RoleGroupMember roleGroupEnumId="RgpShipment" roleTypeId="CustomerShipTo"/>
             <mantle.party.RoleGroupMember roleGroupEnumId="RgpShipment" roleTypeId="VendorShipFrom"/>
-            <mantle.party.RoleGroupMember roleGroupEnumId="RgpShipment" roleTypeId="Receiver"/>
-            <mantle.party.RoleGroupMember roleGroupEnumId="RgpShipment" roleTypeId="ShipmentClerk"/>
+<!--            <mantle.party.RoleGroupMember roleGroupEnumId="RgpShipment" roleTypeId="Receiver"/>-->
+<!--            <mantle.party.RoleGroupMember roleGroupEnumId="RgpShipment" roleTypeId="ShipmentClerk"/>-->
             <mantle.party.RoleGroupMember roleGroupEnumId="RgpShipment" roleTypeId="Packer"/>
             <mantle.party.RoleGroupMember roleGroupEnumId="RgpShipment" roleTypeId="Picker"/>
         </seed-data>

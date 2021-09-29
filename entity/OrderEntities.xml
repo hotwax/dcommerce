@@ -398,7 +398,7 @@ along with this software (see the LICENSE.md file). If not, see
         <field name="finAccountTransId" type="id"/>
         <field name="overrideGlAccountId" type="id">
             <description>Used to specify the override or actual glAccountId used for the item.</description></field>
-        <field name="salesOpportunityId" type="id"/>
+<!--        <field name="salesOpportunityId" type="id"/>-->
 
         <!-- these fields are for sales/VAT/etc tax items -->
         <field name="sourceReferenceId" type="text-short"/>
@@ -434,10 +434,10 @@ along with this software (see the LICENSE.md file). If not, see
         <relationship type="one" related="mantle.product.store.ProductStorePromoCode" short-alias="storePromoCode"/>
 
         <relationship type="one" related="mantle.product.subscription.Subscription" short-alias="subscription"/>
-        <relationship type="one" related="mantle.account.financial.FinancialAccount" short-alias="financialAccount"/>
-        <relationship type="one" related="mantle.account.financial.FinancialAccountTrans" short-alias="financialAccountTrans"/>
-        <relationship type="one" related="SalesOpportunity" short-alias="opportunity"/>
-        <relationship type="one" related="mantle.other.tax.TaxAuthority" short-alias="taxAuthority"/>
+        <!--<relationship type="one" related="mantle.account.financial.FinancialAccount" short-alias="financialAccount"/>
+        <relationship type="one" related="mantle.account.financial.FinancialAccountTrans" short-alias="financialAccountTrans"/>-->
+<!--        <relationship type="one" related="SalesOpportunity" short-alias="opportunity"/>-->
+<!--        <relationship type="one" related="mantle.other.tax.TaxAuthority" short-alias="taxAuthority"/>-->
 
         <relationship type="many" related="mantle.product.issuance.AssetReservation" short-alias="reservations">
             <key-map field-name="orderId"/><key-map field-name="orderItemSeqId"/></relationship>
@@ -698,7 +698,7 @@ along with this software (see the LICENSE.md file). If not, see
             <key-map field-name="customerPartyId"/></relationship>
         <relationship type="one" title="Vendor" related="mantle.party.Party" short-alias="vendor">
             <key-map field-name="vendorPartyId"/></relationship>
-        <relationship type="one" related="mantle.account.financial.FinancialAccount" short-alias="financialAccount"/>
+<!--        <relationship type="one" related="mantle.account.financial.FinancialAccount" short-alias="financialAccount"/>-->
         <relationship type="one" related="mantle.account.method.PaymentMethod" short-alias="paymentMethod"/>
         <relationship type="one" title="Postal" related="mantle.party.contact.ContactMech" short-alias="postal">
             <key-map field-name="postalContactMechId"/></relationship>
@@ -852,7 +852,7 @@ along with this software (see the LICENSE.md file). If not, see
 
         <relationship type="one" title="Replacement" related="mantle.order.OrderHeader" short-alias="replacementOrder">
             <key-map field-name="replacementOrderId"/></relationship>
-        <relationship type="one" related="mantle.account.financial.FinancialAccountTrans" short-alias="financialAccountTrans"/>
+<!--        <relationship type="one" related="mantle.account.financial.FinancialAccountTrans" short-alias="financialAccountTrans"/>-->
         <relationship type="one" title="Refund" related="mantle.account.payment.Payment" short-alias="refundPayment">
             <key-map field-name="refundPaymentId"/></relationship>
 

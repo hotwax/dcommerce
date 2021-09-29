@@ -97,9 +97,9 @@ along with this software (see the LICENSE.md file). If not, see
                 filterMap="[vendorPartyId:filterOrgIds, customerPartyId:filterOrgIds]"/>
         <filters entityFilterId="MANTLE_USER_ORG_4" entityName="mantle.shipment.Shipment" joinOr="Y"
                 filterMap="[fromPartyId:filterOrgIds, toPartyId:filterOrgIds]"/>
-        <filters entityFilterId="MANTLE_USER_ORG_5" entityName="mantle.account.financial.FinancialAccount" filterMap="[organizationPartyId:filterOrgIds]"/>
-        <filters entityFilterId="MANTLE_USER_ORG_6" entityName="mantle.ledger.transaction.AcctgTrans" filterMap="[organizationPartyId:filterOrgIds]"/>
-        <filters entityFilterId="MANTLE_USER_ORG_7" entityName="mantle.party.time.TimePeriod" filterMap="[partyId:filterOrgIds]"/>
+<!--        <filters entityFilterId="MANTLE_USER_ORG_5" entityName="mantle.account.financial.FinancialAccount" filterMap="[organizationPartyId:filterOrgIds]"/>-->
+        <!--<filters entityFilterId="MANTLE_USER_ORG_6" entityName="mantle.ledger.transaction.AcctgTrans" filterMap="[organizationPartyId:filterOrgIds]"/>
+        <filters entityFilterId="MANTLE_USER_ORG_7" entityName="mantle.party.time.TimePeriod" filterMap="[partyId:filterOrgIds]"/>-->
         <!-- PartyRelationship: toPartyId in filterOrgIds OR relationshipTypeEnumId != PrtEmployee -->
         <!-- don't include by default, adds overhead and only applicable to very specific HR or payroll use cases:
         <filters entityFilterId="MANTLE_USER_ORG_8" entityName="mantle.party.PartyRelationship"
@@ -126,8 +126,8 @@ along with this software (see the LICENSE.md file). If not, see
                 filterMap="[vendorPartyId:activeOrgId, customerPartyId:activeOrgId]"/>
         <filters entityFilterId="MANTLE_ACTIVE_ORG_4" entityName="mantle.shipment.Shipment" joinOr="Y"
                 filterMap="[fromPartyId:activeOrgId, toPartyId:activeOrgId]"/>
-        <filters entityFilterId="MANTLE_ACTIVE_ORG_5" entityName="mantle.account.financial.FinancialAccount" filterMap="[organizationPartyId:activeOrgId]"/>
-        <filters entityFilterId="MANTLE_ACTIVE_ORG_6" entityName="mantle.ledger.transaction.AcctgTrans" filterMap="[organizationPartyId:activeOrgId]"/>
+<!--        <filters entityFilterId="MANTLE_ACTIVE_ORG_5" entityName="mantle.account.financial.FinancialAccount" filterMap="[organizationPartyId:activeOrgId]"/>-->
+        <!--<filters entityFilterId="MANTLE_ACTIVE_ORG_6" entityName="mantle.ledger.transaction.AcctgTrans" filterMap="[organizationPartyId:activeOrgId]"/>-->
         <filters entityFilterId="MANTLE_ACTIVE_ORG_7" entityName="mantle.party.time.TimePeriod"
                 filterMap="[_join:'or', _list:[[partyId:activeOrgId], [timePeriodTypeId:(activeOrgId?'Sales%':null), _comp:'like']]]"/>
         <!-- PartyRelationship: toPartyId == activeOrgId OR relationshipTypeEnumId != PrtEmployee -->
@@ -185,14 +185,14 @@ along with this software (see the LICENSE.md file). If not, see
             serviceName="mantle.order.OrderServices.autoApprove#OrdersDelayed" cronExpression="0 0/15 * * * ?" paused="N"
             transactionTimeout="1800"/>
     <!-- Service Job: Create Recurring Orders - every night at 2:00 am -->
-    <moqui.service.job.ServiceJob jobName="create_RecurringOrders" description="Create Recurring Orders"
+    <!--<moqui.service.job.ServiceJob jobName="create_RecurringOrders" description="Create Recurring Orders"
             serviceName="mantle.order.OrderServices.create#RecurringOrders" cronExpression="0 0 2 * * ?" paused="N"
-            transactionTimeout="1800"/>
+            transactionTimeout="1800"/>-->
 
     <!-- Service Job: Recalculate GL Account Org Summaries - once per hour by default -->
-    <moqui.service.job.ServiceJob jobName="recalculate_GlAccountOrgSummaries" description="Recalculate GL Account Org Summaries"
+    <!--<moqui.service.job.ServiceJob jobName="recalculate_GlAccountOrgSummaries" description="Recalculate GL Account Org Summaries"
             serviceName="mantle.ledger.LedgerServices.recalculate#GlAccountOrgSummaries" cronExpression="0 0 * * * ?" paused="N"
-            transactionTimeout="1800"/>
+            transactionTimeout="1800"/>-->
 
     <!-- Service Job: Poll Payment Gateway Details (paused by default; cron for every night at 2:00 am) -->
     <moqui.service.job.ServiceJob jobName="poll_PaymentGatewayDetails" description="Poll Payment Gateway Details"
@@ -211,16 +211,16 @@ along with this software (see the LICENSE.md file). If not, see
     </moqui.service.job.ServiceJob>
 
     <!-- Service Job: Payroll Processing -->
-    <moqui.security.user.NotificationTopic topic="ProcessTimePeriodPay" description="Payroll Period Process Pay Completed"
+    <!--<moqui.security.user.NotificationTopic topic="ProcessTimePeriodPay" description="Payroll Period Process Pay Completed"
             typeString="success" showAlert="Y" persistOnSend="Y" receiveNotifications="Y"
             titleTemplate="Process Pay Completed for Payroll Period ${parameters.timePeriodId} for pay date ${ec.l10n.format(results.payDate, '')}, total pay ${ec.l10n.format(results.totalPayAmount, '0.00')}"
             errorTitleTemplate="Error in Process Pay for Payroll Period ${parameters.timePeriodId}: ${serviceCallRun.errors}"
-            linkTemplate=""/>
-    <moqui.service.job.ServiceJob jobName="ProcessTimePeriodPay" description="Process Pay for Payroll Period"
-            serviceName="mantle.humanres.PayrollServices.process#TimePeriodPay" topic="ProcessTimePeriodPay"/>
+            linkTemplate=""/>-->
+    <!--<moqui.service.job.ServiceJob jobName="ProcessTimePeriodPay" description="Process Pay for Payroll Period"
+            serviceName="mantle.humanres.PayrollServices.process#TimePeriodPay" topic="ProcessTimePeriodPay"/-->>
 
     <!-- Service Job: Check All Parties for Duplicates (paused by default; cron for every night at 2:00 am) -->
-    <moqui.service.job.ServiceJob jobName="check_AllPartyDuplicates" description="Check All Parties for Duplicates"
+    <!--<moqui.service.job.ServiceJob jobName="check_AllPartyDuplicates" description="Check All Parties for Duplicates"
             serviceName="mantle.party.DuplicateServices.check#AllPartyDuplicates" cronExpression="0 0 2 * * ?" paused="Y"
-            transactionTimeout="3600"/>
+            transactionTimeout="3600"/>-->
 </entity-facade-xml>

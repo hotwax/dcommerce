@@ -131,10 +131,10 @@ along with this software (see the LICENSE.md file). If not, see
             <entity-find entity-name="mantle.shipment.ShipmentContent" list="contentList">
                 <econdition field-name="shipmentId"/><order-by field-name="-contentDate"/></entity-find>
 
-            <!-- get associated accounting transactions -->
+            <!--&lt;!&ndash; get associated accounting transactions &ndash;&gt;
             <entity-find entity-name="mantle.ledger.transaction.AcctgTrans" list="acctgTransList">
                 <econdition field-name="shipmentId"/></entity-find>
-            <set field="acctgTransIdSet" from="new TreeSet(acctgTransList*.acctgTransId)"/>
+            <set field="acctgTransIdSet" from="new TreeSet(acctgTransList*.acctgTransId)"/>-->
 
             <if condition="isIncoming || isTransfer">
                 <set field="allReceived" from="true"/>
